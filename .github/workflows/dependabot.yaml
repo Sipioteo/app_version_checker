@@ -20,7 +20,7 @@ jobs:
           channel: 'stable'
 
       - name: Get dependencies
-        run: flutter pub get
+        run: flutter clean && flutter pub get && flutter pub upgrade --major-versions
 
       - name: Auto-merge PRs
         uses: "pascalgn/automerge-action@v0.15.3"
@@ -28,7 +28,7 @@ jobs:
         with:
           merge_method: "squash"
           github_token: "${{ secrets.GITHUB_TOKEN }}"
-          
+
       - name: Close PR if tests fail
         uses: peter-evans/close-pull@v3.0.0
         if: ${{ failure() }}
