@@ -26,12 +26,12 @@ jobs:
         uses: "pascalgn/automerge-action@v0.15.3"
         if: ${{ success() }}
         env:
-          merge_method: "squash"
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_METHOD: "squash"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Close PR if tests fail
         uses: peter-evans/close-pull@v3.0.0
         if: ${{ failure() }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          comment: "Tests failed, closing this PR. Please fix the tests and open a new PR."
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT: "Tests failed, closing this PR. Please fix the tests and open a new PR."
